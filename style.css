@@ -115,9 +115,9 @@ section .title::after{
 .navbar .menu li a{
     display: block;
     color: #fff;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
-    margin-left: 25px;
+    margin-left: 20px;
     transition: color 0.3s ease;
 }
 .navbar .menu li a:hover{
@@ -192,7 +192,7 @@ section .title::after{
     font-size: 27px;
 }
 .home .home-content .text-2{
-    font-size: 75px;
+    font-size: 50px;
     font-weight: 600;
     margin-left: -3px;
 }
@@ -422,17 +422,17 @@ section .title::after{
 
 /* contact section styling */
 .contact{
-    background: #111;
-    color: #fff;
+    background: #fff;
+    color: #111;
 }
 
 .contact .title::before{
-    background: #fff;
+    background: #111;
 }
 
 .contact .title::after{
     content: "get in touch";
-    background: #000;
+    background: #fff;
 }
 
 .contact .contact-content .column{
@@ -442,7 +442,7 @@ section .title::after{
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 10px;
-    color: #fff;
+    color: #111;
 }
 .contact .contact-content .left p{
     text-align: justify;
@@ -466,7 +466,7 @@ section .title::after{
     font-weight: 500;
 }
 .contact .contact-content .info .sub-title{
-    color: #fff;
+    color: #111;
 }
 .contact .right form .fields{
     display: flex;
@@ -679,4 +679,706 @@ footer span a:hover{
         font-size: 23px;
         line-height: 38px;
     }
+}
+/* works section styling */
+.works {
+    background: #111;
+    color: #fff;
+    overflow: hidden;
+    padding: 100px 0 50px;
+}
+
+.works .title::before {
+    background: #fff;
+}
+
+.works .title::after {
+    content: "my latest works";
+    background: #111;
+}
+
+.works-slider {
+    position: relative;
+    width: 100vw;
+    height: 450px;
+    margin: 40px 0;
+    overflow: hidden;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+/* works section styling - updated for smoother animation */
+.works-track {
+    display: flex;
+    width: calc(350px * 18); /* Width of each item × number of items (including duplicates) */
+    animation: scroll 40s linear infinite; /* Increased duration for smoother movement */
+    position: relative;
+    height: 100%;
+    align-items: center;
+    will-change: transform; /* Optimizes animation performance */
+    transform: translateZ(0); /* Forces hardware acceleration */
+}
+
+/* Smoother transition when hovering */
+.works-track:hover {
+    animation-play-state: paused;
+    transition: all 0.3s ease-out;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-350px * 9)); /* Width of each item × number of non-duplicate items */
+    }
+}
+
+.work-item {
+    width: 350px;
+    height: 350px;
+    padding: 10px;
+    perspective: 100px;
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1); /* Smoother easing function */
+    position: relative;
+    z-index: 1;
+    aspect-ratio: 1/1;
+    backface-visibility: hidden; /* Prevents flickering during animations */
+}
+
+.work-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1); /* Smoother easing function */
+    aspect-ratio: 1/1;
+    object-position: center;
+    backface-visibility: hidden; /* Prevents flickering during animations */
+}
+
+.work-item:hover {
+    transform: scale(1.20) translateY(-20px);
+    z-index: 10;
+    filter: grayscale(0%) !important;
+}
+
+.work-item:hover ~ .work-item {
+    transform: translateX(50px);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .work-item {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .works-track {
+        width: calc(300px * 18);
+    }
+    
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-300px * 9));
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .work-item {
+        width: 250px;
+        height: 250px;
+        padding: 8px;
+    }
+    
+    .works-track {
+        width: calc(250px * 18);
+    }
+    
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-250px * 9));
+        }
+    }
+}
+
+.works-carousel-container {
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.works-carousel .work-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    margin: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.works-carousel .work-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+.works-carousel .work-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.works-carousel .work-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Custom navigation for works carousel */
+.works-carousel .owl-nav button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(62, 114, 230, 0.7) !important;
+    color: #fff !important;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.works-carousel:hover .owl-nav button {
+    opacity: 1;
+}
+
+.works-carousel .owl-nav button.owl-prev {
+    left: 10px;
+}
+
+.works-carousel .owl-nav button.owl-next {
+    right: 10px;
+}
+
+.works-carousel .owl-nav button:hover {
+    background: rgba(62, 114, 230, 1) !important;
+}
+/* Add this to your existing CSS file */
+.navbar .logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .logo img.nav-logo {
+    height: 30px; /* Adjust height as needed */
+    width: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/* For when navbar becomes sticky */
+.navbar.sticky .logo img.nav-logo {
+    height: 25px; /* Slightly smaller when sticky */
+}
+
+/* Responsive adjustment */
+@media (max-width: 500px) {
+    .navbar .logo img.nav-logo {
+        height: 25px;
+    }
+}
+.owl-dots{
+    text-align: center;
+    margin-top: 20px;
+}
+.owl-dot{
+    height: 13px;
+    width: 13px;
+    margin: 0 5px;
+    outline: none!important;
+    border-radius: 50%;
+    border: 2px solid #3e72e6!important;
+    transition: all 0.3s ease;
+}
+.owl-dot.active{
+    width: 35px;
+    border-radius: 14px;
+}
+.owl-dot.active,
+.owl-dot:hover{
+    background: #3e72e6!important;
+}
+
+/* contact section styling */
+.contact{
+    background: #fff;
+    color: #111;
+}
+
+.contact .title::before{
+    background: #111;
+}
+
+.contact .title::after{
+    content: "get in touch";
+    background: #fff;
+}
+
+.contact .contact-content .column{
+    width: calc(50% - 30px);
+}
+.contact .contact-content .text{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #111;
+}
+.contact .contact-content .left p{
+    text-align: justify;
+}
+.contact .contact-content .left .icons{
+    margin: 10px 0;
+}
+.contact .contact-content .row{
+    display: flex;
+    height: 65px;
+    align-items: center;
+}
+.contact .contact-content .row .info{
+    margin-left: 30px;
+}
+.contact .contact-content .row i{
+    font-size: 25px;
+    color: #3e72e6;
+}
+.contact .contact-content .info .head{
+    font-weight: 500;
+}
+.contact .contact-content .info .sub-title{
+    color: #111;
+}
+.contact .right form .fields{
+    display: flex;
+}
+.contact .right form .field,
+.contact .right form .fields .field{
+    height: 45px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+.contact .right form .textarea{
+    height: 80px;
+    width: 100%;
+}
+.contact .right form .name{
+    margin-right: 10px;
+}
+.contact .right form .field input,
+.contact .right form .textarea textarea{
+    height: 100%;
+    width: 100%;
+    border: 1px solid lightgrey;
+    border-radius: 6px;
+    outline: none;
+    padding: 0 15px;
+    font-size: 17px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+.contact .right form .field input:focus,
+.contact .right form .textarea textarea:focus{
+    border-color: #b3b3b3;
+}
+.contact .right form .textarea textarea{
+  padding-top: 10px;
+  resize: none;
+}
+.contact .right form .button-area{
+  display: flex;
+  align-items: center;
+}
+.right form .button-area button{
+  color: #fff;
+  display: block;
+  width: 160px!important;
+  height: 45px;
+  outline: none;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  flex-wrap: nowrap;
+  background: #3e72e6;
+  border: 2px solid #3e72e6;
+  transition: all 0.3s ease;
+}
+.right form .button-area button:hover{
+  color: #3e72e6;
+  background: none;
+}
+
+.success-message {
+    color: #fff;
+    background-color: #28a745; /* Green background */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* footer section styling */
+footer{
+    background: #111;
+    padding: 15px 23px;
+    color: #fff;
+    text-align: center;
+}
+footer span a{
+    color: #3e72e6;
+    text-decoration: none;
+}
+footer span a:hover{
+    text-decoration: underline;
+}
+
+/* responsive media query start */
+@media (max-width: 1104px) {
+    .about .about-content .left img{
+        height: 350px;
+        width: 350px;
+    }
+}
+
+@media (max-width: 991px) {
+    .max-width{
+        padding: 0 50px;
+    }
+}
+@media (max-width: 947px){
+    .menu-btn{
+        display: block;
+        z-index: 999;
+    }
+    .menu-btn i.active:before{
+        content: "\f00d";
+    }
+    .navbar .menu{
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        left: -100%;
+        top: 0;
+        background: #111;
+        text-align: center;
+        padding-top: 80px;
+        transition: all 0.3s ease;
+    }
+    .navbar .menu.active{
+        left: 0;
+    }
+    .navbar .menu li{
+        display: block;
+    }
+    .navbar .menu li a{
+        display: inline-block;
+        margin: 20px 0;
+        font-size: 25px;
+    }
+    .home .home-content .text-2{
+        font-size: 70px;
+    }
+    .home .home-content .text-3{
+        font-size: 35px;
+    }
+    .home .home-content a{
+        font-size: 23px;
+        padding: 10px 30px;
+    }
+    .max-width{
+        max-width: 930px;
+    }
+    .about .about-content .column{
+        width: 100%;
+    }
+    .about .about-content .left{
+        display: flex;
+        justify-content: center;
+        margin: 0 auto 60px;
+    }
+    .about .about-content .right{
+        flex: 100%;
+    }
+    .edubackground .serv-content .card{
+        width: calc(50% - 10px);
+        margin-bottom: 20px;
+    }
+    .skills .skills-content .column,
+    .contact .contact-content .column{
+        width: 100%;
+        margin-bottom: 35px;
+    }
+}
+
+@media (max-width: 690px) {
+    .max-width{
+        padding: 0 23px;
+    }
+    .home .home-content .text-2{
+        font-size: 60px;
+    }
+    .home .home-content .text-3{
+        font-size: 32px;
+    }
+    .home .home-content a{
+        font-size: 20px;
+    }
+    .edubackground .serv-content .card{
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .home .home-content .text-2{
+        font-size: 50px;
+    }
+    .home .home-content .text-3{
+        font-size: 27px;
+    }
+    .about .about-content .right .text,
+    .skills .skills-content .left .text{
+        font-size: 19px;
+    }
+    .contact .right form .fields{
+        flex-direction: column;
+    }
+    .contact .right form .name,
+    .contact .right form .email{
+        margin: 0;
+    }
+    .right form .error-box{
+       width: 150px;
+    }
+    .scroll-up-btn{
+        right: 15px;
+        bottom: 15px;
+        height: 38px;
+        width: 35px;
+        font-size: 23px;
+        line-height: 38px;
+    }
+}
+/* works section styling */
+.works {
+    background: #111;
+    color: #fff;
+    overflow: hidden;
+    padding: 100px 0 50px;
+}
+
+.works .title::before {
+    background: #fff;
+}
+
+.works .title::after {
+    content: "my latest works";
+    background: #111;
+}
+
+.works-slider {
+    position: relative;
+    width: 100vw;
+    height: 450px;
+    margin: 40px 0;
+    overflow: hidden;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+/* works section styling - updated for smoother animation */
+.works-track {
+    display: flex;
+    width: calc(350px * 18); /* Width of each item × number of items (including duplicates) */
+    animation: scroll 40s linear infinite; /* Increased duration for smoother movement */
+    position: relative;
+    height: 100%;
+    align-items: center;
+    will-change: transform; /* Optimizes animation performance */
+    transform: translateZ(0); /* Forces hardware acceleration */
+}
+
+/* Smoother transition when hovering */
+.works-track:hover {
+    animation-play-state: paused;
+    transition: all 0.3s ease-out;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-350px * 9)); /* Width of each item × number of non-duplicate items */
+    }
+}
+
+.work-item {
+    width: 350px;
+    height: 350px;
+    padding: 10px;
+    perspective: 100px;
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1); /* Smoother easing function */
+    position: relative;
+    z-index: 1;
+    aspect-ratio: 1/1;
+    backface-visibility: hidden; /* Prevents flickering during animations */
+}
+
+.work-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1); /* Smoother easing function */
+    aspect-ratio: 1/1;
+    object-position: center;
+    backface-visibility: hidden; /* Prevents flickering during animations */
+}
+
+.work-item:hover {
+    transform: scale(1.20) translateY(-20px);
+    z-index: 10;
+    filter: grayscale(0%) !important;
+}
+
+.work-item:hover ~ .work-item {
+    transform: translateX(50px);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .work-item {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .works-track {
+        width: calc(300px * 18);
+    }
+    
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-300px * 9));
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .work-item {
+        width: 250px;
+        height: 250px;
+        padding: 8px;
+    }
+    
+    .works-track {
+        width: calc(250px * 18);
+    }
+    
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-250px * 9));
+        }
+    }
+}
+
+.works-carousel-container {
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.works-carousel .work-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    margin: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.works-carousel .work-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+.works-carousel .work-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.works-carousel .work-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Custom navigation for works carousel */
+.works-carousel .owl-nav button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(62, 114, 230, 0.7) !important;
+    color: #fff !important;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.works-carousel:hover .owl-nav button {
+    opacity: 1;
+}
+
+.works-carousel .owl-nav button.owl-prev {
+    left: 10px;
+}
+
+.works-carousel .owl-nav button.owl-next {
+    right: 10px;
+}
+
+.works-carousel .owl-nav button:hover {
+    background: rgba(62, 114, 230, 1) !important;
 }

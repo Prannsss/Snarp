@@ -48,7 +48,7 @@ $(document).ready(function(){
         loop: true
     });
 
-    // owl carousel script
+    // owl carousel script for hobbies
     $('.carousel').owlCarousel({
         margin: 20,
         loop: true,
@@ -67,6 +67,33 @@ $(document).ready(function(){
             1000:{
                 items: 3,
                 nav: false
+            }
+        }
+    });
+    
+    // works carousel with special effects
+    $('.works-carousel').owlCarousel({
+        margin: 15,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 3000,
+        autoplaySpeed: 1000,
+        autoplayHoverPause: true,
+        nav: true,
+        navText: ['<i class="fas fa-chevron-left"></i>', '<i class="fas fa-chevron-right"></i>'],
+        dots: true,
+        responsive: {
+            0:{
+                items: 1,
+            },
+            600:{
+                items: 2,
+            },
+            900:{
+                items: 3,
+            },
+            1200:{
+                items: 4,
             }
         }
     });
