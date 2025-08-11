@@ -12,6 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 </head>
 <body>
@@ -28,7 +30,7 @@
                 <li><a href="#home" class="menu-btn">Home</a></li>
                 <li><a href="#about" class="menu-btn">About</a></li>
                 <li><a href="#edubackground" class="menu-btn">Educational Background</a></li>
-                <li><a href="#skills" class="menu-btn">Hobbies and Talents</a></li>
+                <li><a href="#skills" class="menu-btn">Hobbies</a></li>
                 <li><a href="#works" class="menu-btn">Works</a></li>
                 <li><a href="#contact" class="menu-btn">Contact</a></li>
             </ul>
@@ -45,23 +47,23 @@
                 <div class="text-1">Hello, my name is</div>
                 <div class="text-2">France Laurence Velarde</div>
                 <div class="text-3">and I am a <span class="typing"></span></div>
-                <a href="/Snarp/images/works/Resume as of May 2025.pdf" download="Snarp.pdf">Hire me</a>
+                <a href="/Snarp/images/works/Resume.pdf" download="Snarp.pdf">Hire me</a>
             </div>
         </div>
     </section>
 
     <!-- about section start -->
     <section class="about" id="about">
-        <div class="max-width">
-            <h2 class="title">About me</h2>
+        <div class="max-width fade-in-section">
+            <h2 class="title fade-in-element">About me</h2>
             <div class="about-content">
-                <div class="column left">
+                <div class="column left fade-in-element delay-1">
                     <img src="images/pfp3.jpg" alt="">
                 </div>
-                <div class="column right">
+                <div class="column right fade-in-element delay-2">
                     <div class="text">I'm France and I'm a <span class="typing-2"></span></div>
                     <p>
-                        Hey, I’m France Laurence Velarde – an upcoming third-year BSIT student diving headfirst into the digital world. I’ve always been drawn to creativity and tech, which is why I’ve found my groove as a (lowkey) creator on YouTube. I love making fun, engaging videos and memes that (hopefully) make people smile. Lately, I’ve been really into design – from graphic design to UI/UX, it’s where I get to turn ideas into visuals that actually connect with people. My coding skills are still a work in progress, but I’m super eager to learn and grow more in the tech space. The goal? To blend creativity and tech, and build something awesome and meaningful along the way.
+                        Hey, I’m France Laurence Velarde – a third-year BSIT student diving headfirst into the digital world. I’ve always been drawn to creativity and tech, which is why I’ve found my groove as a (lowkey) creator on YouTube. I love making fun, engaging videos and memes that (hopefully) make people smile. Lately, I’ve been really into design – from graphic design to UI/UX, it’s where I get to turn ideas into visuals that actually connect with people. My coding skills are still a work in progress, but I’m super eager to learn and grow more in the tech space. The goal? To blend creativity and tech, and build something awesome and meaningful along the way.
                     </p>
                 </div>
             </div>
@@ -70,10 +72,10 @@
 
     <!-- educational background section -->
     <section class="edubackground" id="edubackground">
-    <div class="max-width">
-        <h2 class="title">Educational Background</h2>
+    <div class="max-width fade-in-section">
+        <h2 class="title fade-in-element">Educational Background</h2>
         <div class="serv-content">
-            <div class="card">
+            <div class="card fade-in-element delay-1">
                 <div class="box">
                     <i class="fas fa-school"></i>
                     <div class="text">Junior High School</div>
@@ -84,7 +86,7 @@
                     </p>
                 </div>
             </div>
-            <div class="card">
+            <div class="card fade-in-element delay-2">
                 <div class="box">
                     <i class="fas fa-university"></i>
                     <div class="text">College</div>
@@ -95,7 +97,7 @@
                     </p>
                 </div>
             </div>
-            <div class="card">
+            <div class="card fade-in-element delay-3">
                 <div class="box">
                     <i class="fas fa-graduation-cap"></i>
                     <div class="text">Senior High School</div>
@@ -113,11 +115,11 @@
 
     <!-- skills section start -->
     <section class="skills" id="skills">
-        <div class="max-width">
-            <h2 class="title">My Hobbies & Talents</h2>
+        <div class="max-width fade-in-section">
+            <h2 class="title fade-in-element">My Hobbies</h2>
             <div class="skills-content">
-                <div class="column left">
-                    <div class="text"><h3>My hobbies & talents</h3></div>
+                <div class="column left fade-in-element delay-1">
+                    <div class="text"><h3>What I love to do</h3></div>
                     <div class="talents-list">
                         <div class="talent-item">
                             <h3>Playing Guitar</h3>
@@ -141,7 +143,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="column right">
+                <div class="column right fade-in-element delay-2">
                     <div class="carousel owl-carousel">
                         <div class="card">
                             <div class="box">
@@ -186,50 +188,48 @@
     
     <!-- works section start -->
     <section class="works" id="works">
-        <div class="max-width">
-
-            <h2 class="title">My Personal Works</h2>
-            <div class="works-slider">
+        <div class="max-width fade-in-section">
+            <h2 class="title fade-in-element">My Personal Works</h2>
+            <div class="works-slider fade-in-element delay-1">
                 <div class="works-track">
-                    <!-- First set of images -->
-                    <div class="work-item"><img src="images/works/1.png" alt="Work 0"></div>
-                    <div class="work-item"><img src="images/works/2.png" alt="Work 1"></div>
-                    <div class="work-item"><img src="images/works/3.png" alt="Work 2"></div>
-                    <div class="work-item"><img src="images/works/4.png" alt="Work 3"></div>
-                    <div class="work-item"><img src="images/works/5.png" alt="Work 4"></div>
-                    <div class="work-item"><img src="images/works/7.png" alt="Work 5"></div>
-                    <div class="work-item"><img src="images/works/8.png" alt="Work 6"></div>
-                    <div class="work-item"><img src="images/works/9.png" alt="Work 7"></div>
-                    <div class="work-item"><img src="images/works/10.png" alt="Work 8"></div>
-                    <div class="work-item"><img src="images/works/11.png" alt="Work 9"></div>
-                    <div class="work-item"><img src="images/works/12.png" alt="Work 10"></div>
-                    <div class="work-item"><img src="images/works/13.png" alt="Work 11"></div>
-                    
-                    <!-- Duplicate set for infinite effect -->
-                    <div class="work-item"><img src="images/works/1.png" alt="Work 0"></div>
-                    <div class="work-item"><img src="images/works/2.png" alt="Work 1"></div>
-                    <div class="work-item"><img src="images/works/3.png" alt="Work 2"></div>
-                    <div class="work-item"><img src="images/works/4.png" alt="Work 3"></div>
-                    <div class="work-item"><img src="images/works/5.png" alt="Work 4"></div>
-                    <div class="work-item"><img src="images/works/7.png" alt="Work 5"></div>
-                    <div class="work-item"><img src="images/works/8.png" alt="Work 6"></div>
-                    <div class="work-item"><img src="images/works/9.png" alt="Work 7"></div>
-                    <div class="work-item"><img src="images/works/10.png" alt="Work 8"></div>
-                    <div class="work-item"><img src="images/works/11.png" alt="Work 9"></div>
-                    <div class="work-item"><img src="images/works/12.png" alt="Work 10"></div>
-                    <div class="work-item"><img src="images/works/13.png" alt="Work 11"></div>
-                    <div class="work-item"><img src="images/works/14.png" alt="Work 12"></div>
+                    <div class="work-item"><img src="images/works/1.png" alt="Work 1"></div>
+                    <div class="work-item"><img src="images/works/2.png" alt="Work 2"></div>
+                    <div class="work-item"><img src="images/works/3.png" alt="Work 3"></div>
+                    <div class="work-item"><img src="images/works/4.png" alt="Work 4"></div>
+                    <div class="work-item"><img src="images/works/5.png" alt="Work 5"></div>
+                    <div class="work-item"><img src="images/works/7.png" alt="Work 7"></div>
+                    <div class="work-item"><img src="images/works/8.png" alt="Work 8"></div>
+                    <div class="work-item"><img src="images/works/9.png" alt="Work 9"></div>
+                    <div class="work-item"><img src="images/works/10.png" alt="Work 10"></div>
+                    <div class="work-item"><img src="images/works/15.png" alt="Work 15"></div>
+                    <div class="work-item"><img src="images/works/16.png" alt="Work 1"></div>
+
+                    <!-- Duplicate items for seamless loop -->
+                    <div class="work-item"><img src="images/works/1.png" alt="Work 1"></div>
+                    <div class="work-item"><img src="images/works/2.png" alt="Work 2"></div>
+                    <div class="work-item"><img src="images/works/3.png" alt="Work 3"></div>
+                    <div class="work-item"><img src="images/works/4.png" alt="Work 4"></div>
+                    <div class="work-item"><img src="images/works/5.png" alt="Work 5"></div>
+                    <div class="work-item"><img src="images/works/7.png" alt="Work 7"></div>
+                    <div class="work-item"><img src="images/works/8.png" alt="Work 8"></div>
+                    <div class="work-item"><img src="images/works/9.png" alt="Work 9"></div>
+                    <div class="work-item"><img src="images/works/10.png" alt="Work 10"></div>
+                    <div class="work-item"><img src="images/works/15.png" alt="Work 15"></div>
+                    <div class="work-item"><img src="images/works/16.png" alt="Work 1"></div>
                 </div>
+                <!-- Fade overlays for left and right sides -->
+                <div class="fade-left"></div>
+                <div class="fade-right"></div>
             </div>
         </div>
     </section>
     
     <!-- contact section start -->
     <section class="contact" id="contact">
-        <div class="max-width">
-            <h2 class="title">Contact me</h2>
+        <div class="max-width fade-in-section">
+            <h2 class="title fade-in-element">Contact me</h2>
             <div class="contact-content">
-                <div class="column left">
+                <div class="column left fade-in-element delay-1">
                     <div class="text">Get in touch with Me!</div>
                     <p>Don't hesitate to contact me and let's collaborate to turn your ideas into reality with creativity, passion, and dedication. I'm just an email away, eager to bring your ideas and projects to life!</p>
                     <div class="icons">
@@ -256,27 +256,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="column right">
+                <div class="column right fade-in-element delay-2">
                     <div class="text">Message me</div>
                     <!-- Placeholder for success message -->
-                    <div id="success-message" class="success-message" style="display: none;">Message sent successfully! I will get back to you soon😊!</div>
+                    <div id="success-message" class="success-message">Message sent successfully! I will get back to you soon😊!</div>
                     <form id="contact-form" action="#">
                         <div class="fields">
                             <div class="field name">
-                                <input type="text" placeholder="Name" required>
+                                <input type="text" name="from_name" placeholder="Name" required>
                             </div>
                             <div class="field email">
-                                <input type="email" placeholder="Email" required>
+                                <input type="email" name="from_email" placeholder="Email" required>
                             </div>
                         </div>
                         <div class="field">
-                            <input type="text" placeholder="Subject" required>
+                            <input type="text" name="subject" placeholder="Subject" required>
                         </div>
                         <div class="field textarea">
-                            <textarea cols="30" rows="10" placeholder="Message.." required></textarea>
+                            <textarea cols="30" rows="10" name="message" placeholder="Message.." required></textarea>
                         </div>
                         <div class="button-area">
-                            <button type="submit">Send message</button>
+                            <button type="submit" id="send-btn">Send message</button>
                         </div>
                     </form>
                 </div>
