@@ -1,10 +1,30 @@
 $(document).ready(function(){
-    // Intersection Observer for fade-in/fade-out animations
-    const observerOptions = {
-        threshold: [0, 0.15, 0.85],
-        rootMargin: '0px 0px 0px 0px' // Remove negative margin for more obvious effects
+    // Consolidated configuration object for better performance
+    const config = {
+        observer: {
+            threshold: [0, 0.15, 0.85],
+            rootMargin: '0px 0px 0px 0px'
+        },
+        typing: {
+            strings: ["Designer", "Frontend Developer", "Video Editor", "Graphic Designer", "YouTuber"],
+            typeSpeed: 125,
+            backSpeed: 70,
+            loop: true
+        },
+        carousel: {
+            margin: 20,
+            loop: true,
+            autoplay: true,
+            autoplayTimeOut: 2000,
+            responsive: {
+                0: { items: 1, nav: false },
+                600: { items: 2, nav: false },
+                1000: { items: 3, nav: false }
+            }
+        }
     };
 
+    // Intersection Observer for fade-in/fade-out animations
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             const target = entry.target;
@@ -43,7 +63,7 @@ $(document).ready(function(){
                 });
             }
         });
-    }, observerOptions);
+    }, config.observer);
 
     // Observe all content containers with fade-in-section class (now on .max-width divs)
     document.querySelectorAll('.fade-in-section').forEach(section => {
@@ -84,44 +104,30 @@ $(document).ready(function(){
         $('.menu-btn i').toggleClass("active");
     });
 
-    // typing text animation script
-    var typingConfig = {
-        strings: ["Designer", "Frontend Developer", "Video Editor", "Graphic Designer", "YouTuber"],
-        typeSpeed: 125,
-        backSpeed: 70,
-        loop: true
-    };
-    
-    var typed1 = new Typed(".typing", typingConfig);
-    var typed2 = new Typed(".typing-2", typingConfig);
+    // typing text animation script - using consolidated config
+    var typed1 = new Typed(".typing", config.typing);
+    var typed2 = new Typed(".typing-2", config.typing);
 
-    // owl carousel script for hobbies
-    $('.carousel').owlCarousel({
-        margin: 20,
-        loop: true,
-        autoplay: true,
-        autoplayTimeOut: 2000,
-        responsive: {
-            0:{
-                items: 1,
-                nav: false
-            },
-            600:{
-                items: 2,
-                nav: false
-            },
-            1000:{
-                items: 3,
-                nav: false
-            }
-        }
-    });
+    // owl carousel script for hobbies - using consolidated config
+    $('.carousel').owlCarousel(config.carousel);
+
+    // Dynamic works slider with seamless loop - eliminates duplicate HTML
+    const worksTrack = document.querySelector('.works-track');
+    if (worksTrack) {
+        const workItems = Array.from(worksTrack.children);
+        // Clone items for seamless loop
+        workItems.forEach(item => {
+            const clone = item.cloneNode(true);
+            worksTrack.appendChild(clone);
+        });
+    }
 
     // Initialize EmailJS
     emailjs.init('WAPvCjPme_s0QHkcF');
 });
 
-document.getElementById("contact-form").addEventListener("submit", function (e) {
+// Optimized form submission with async/await
+document.getElementById("contact-form").addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const sendBtn = document.getElementById("send-btn");
@@ -132,53 +138,47 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
     sendBtn.innerHTML = "Sending...";
     sendBtn.disabled = true;
 
-    // Get form data
-    const formData = new FormData(this);
-    const templateParams = {
-        from_name: formData.get('from_name'),
-        from_email: formData.get('from_email'),
-        subject: formData.get('subject'),
-        message: formData.get('message'),
-        to_email: 'vfrancelaurence@gmail.com' 
-    };
+    try {
+        // Get form data
+        const formData = new FormData(this);
+        const templateParams = {
+            from_name: formData.get('from_name'),
+            from_email: formData.get('from_email'),
+            subject: formData.get('subject'),
+            message: formData.get('message'),
+            to_email: 'vfrancelaurence@gmail.com' 
+        };
 
-    // Send email using EmailJS - Send both contact message and auto-reply
-    Promise.all([
-        // 1. Send contact message to you
-        emailjs.send('service_7uqcaai', 'template_0mink6m', {
-            from_name: templateParams.from_name,
-            from_email: templateParams.from_email,
-            subject: templateParams.subject,
-            message: templateParams.message,
-            to_email: 'vfrancelaurence@gmail.com'
-        }),
-        // 2. Send auto-reply to the sender
-        emailjs.send('service_7uqcaai', 'template_s13jdfk', {
-            from_name: templateParams.from_name,
-            from_email: templateParams.from_email,
-            subject: templateParams.subject,
-            message: templateParams.message,
-            to_email: templateParams.from_email // Send auto-reply to sender
-        })
-    ])
-    .then(function(responses) {
-        console.log('Both emails sent successfully!', responses);
-        
+        // Send both emails concurrently for better performance
+        await Promise.all([
+            emailjs.send('service_7uqcaai', 'template_0mink6m', {
+                from_name: templateParams.from_name,
+                from_email: templateParams.from_email,
+                subject: templateParams.subject,
+                message: templateParams.message,
+                to_email: 'vfrancelaurence@gmail.com'
+            }),
+            emailjs.send('service_7uqcaai', 'template_s13jdfk', {
+                from_name: templateParams.from_name,
+                from_email: templateParams.from_email,
+                subject: templateParams.subject,
+                message: templateParams.message,
+                to_email: templateParams.from_email
+            })
+        ]);
+
         // Show success message
         successMessage.innerHTML = "Message sent successfully! I will get back to you soon😊!";
         successMessage.style.display = "block";
         successMessage.style.color = "#ffffff";
         
         // Clear the form fields
-        document.getElementById("contact-form").reset();
+        this.reset();
         
         // Hide the success message after 5 seconds
-        setTimeout(() => {
-            successMessage.style.display = "none";
-        }, 5000);
+        setTimeout(() => successMessage.style.display = "none", 5000);
         
-    })
-    .catch(function(error) {
+    } catch (error) {
         console.log('Failed to send emails...', error);
         
         // Show error message
@@ -187,13 +187,10 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
         successMessage.style.color = "#f44336";
         
         // Hide the error message after 7 seconds
-        setTimeout(() => {
-            successMessage.style.display = "none";
-        }, 7000);
-    })
-    .finally(function() {
+        setTimeout(() => successMessage.style.display = "none", 7000);
+    } finally {
         // Reset button state
         sendBtn.innerHTML = originalBtnText;
         sendBtn.disabled = false;
-    });
+    }
 });
