@@ -323,7 +323,7 @@ section .title::after{
 
 .edubackground .title::after{
     background: #111;
-    content: "my academic journey";
+    content: "my journey";
 }
 
 .edubackground .serv-content .card{
@@ -759,13 +759,13 @@ footer span a:hover{
 /* works track with continuous scrolling animation */
 .works-track {
     display: flex;
-    width: calc(350px * 22); /* Width of each item × number of items */
-    animation: scroll 15s linear infinite;
+    width: calc(350px * 18); /* Width of each item × number of items (including duplicates) */
+    animation: scroll 15s linear infinite; /* Faster continuous scrolling animation */
     position: relative;
     height: 100%;
     align-items: center;
-    will-change: transform;
-    transform: translateZ(0);
+    will-change: transform; /* Optimizes animation performance */
+    transform: translateZ(0); /* Forces hardware acceleration */
 }
 
 @keyframes scroll {
@@ -773,7 +773,7 @@ footer span a:hover{
         transform: translateX(0);
     }
     100% {
-        transform: translateX(calc(-350px * 11)); /* Width of each item × number of non-duplicate items */
+        transform: translateX(calc(-350px * 9)); /* Width of each item × number of non-duplicate items */
     }
 }
 
@@ -784,8 +784,7 @@ footer span a:hover{
     position: relative;
     z-index: 1;
     aspect-ratio: 1/1;
-    backface-visibility: hidden;
-    flex-shrink: 0;
+    backface-visibility: hidden; /* Prevents flickering during animations */
 }
 
 .work-item img {
@@ -796,7 +795,7 @@ footer span a:hover{
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     aspect-ratio: 1/1;
     object-position: center;
-    backface-visibility: hidden;
+    backface-visibility: hidden; /* Prevents flickering during animations */
 }
 
 /* Fade overlays for works section */
@@ -827,7 +826,20 @@ footer span a:hover{
     }
     
     .works-track {
-        width: calc(300px * 22);
+        width: calc(300px * 18);
+    }
+    
+    /* Reduce fade effect for better visibility on tablets */
+    .fade-left, .fade-right {
+        width: 100px;
+    }
+    
+    .fade-left {
+        background: linear-gradient(to right, rgba(17, 17, 17, 0.8) 0%, rgba(17, 17, 17, 0.4) 50%, rgba(17, 17, 17, 0) 100%);
+    }
+    
+    .fade-right {
+        background: linear-gradient(to left, rgba(17, 17, 17, 0.8) 0%, rgba(17, 17, 17, 0.4) 50%, rgba(17, 17, 17, 0) 100%);
     }
     
     @keyframes scroll {
@@ -835,112 +847,42 @@ footer span a:hover{
             transform: translateX(0);
         }
         100% {
-            transform: translateX(calc(-300px * 11));
+            transform: translateX(calc(-300px * 9));
         }
     }
 }
 
-/* Mobile two-row layout */
 @media (max-width: 480px) {
-    .works-slider {
-        height: 480px !important;
-        position: relative;
-        overflow: hidden;
+    .work-item {
+        width: 250px;
+        height: 250px;
+        padding: 8px;
     }
     
     .works-track {
-        display: flex;
-        flex-wrap: wrap;
-        width: 100vw;
-        height: 480px;
-        animation: none; /* Disable horizontal scroll */
-        position: relative;
-        align-content: flex-start;
-        gap: 0;
+        width: calc(250px * 18);
     }
     
-    /* First row items (odd items) - scroll left to right */
-    .work-item:nth-child(odd) {
-        width: 150px;
-        height: 150px;
-        padding: 5px;
-        animation: scroll-row1 12s linear infinite;
-        position: absolute;
-        top: 40px;
-    }
-    
-    /* Second row items (even items) - scroll right to left */
-    .work-item:nth-child(even) {
-        width: 150px;
-        height: 150px;
-        padding: 5px;
-        animation: scroll-row2 12s linear infinite;
-        position: absolute;
-        top: 280px;
-    }
-    
-    /* Position items dynamically for continuous scroll */
-    .work-item:nth-child(1) { left: calc(0px + 160px * 0); }
-    .work-item:nth-child(3) { left: calc(0px + 160px * 1); }
-    .work-item:nth-child(5) { left: calc(0px + 160px * 2); }
-    .work-item:nth-child(7) { left: calc(0px + 160px * 3); }
-    .work-item:nth-child(9) { left: calc(0px + 160px * 4); }
-    .work-item:nth-child(11) { left: calc(0px + 160px * 5); }
-    .work-item:nth-child(13) { left: calc(0px + 160px * 6); }
-    .work-item:nth-child(15) { left: calc(0px + 160px * 7); }
-    .work-item:nth-child(17) { left: calc(0px + 160px * 8); }
-    .work-item:nth-child(19) { left: calc(0px + 160px * 9); }
-    .work-item:nth-child(21) { left: calc(0px + 160px * 10); }
-    
-    .work-item:nth-child(2) { left: calc(100vw + 160px * 0); }
-    .work-item:nth-child(4) { left: calc(100vw + 160px * 1); }
-    .work-item:nth-child(6) { left: calc(100vw + 160px * 2); }
-    .work-item:nth-child(8) { left: calc(100vw + 160px * 3); }
-    .work-item:nth-child(10) { left: calc(100vw + 160px * 4); }
-    .work-item:nth-child(12) { left: calc(100vw + 160px * 5); }
-    .work-item:nth-child(14) { left: calc(100vw + 160px * 6); }
-    .work-item:nth-child(16) { left: calc(100vw + 160px * 7); }
-    .work-item:nth-child(18) { left: calc(100vw + 160px * 8); }
-    .work-item:nth-child(20) { left: calc(100vw + 160px * 9); }
-    .work-item:nth-child(22) { left: calc(100vw + 160px * 10); }
-    
-    /* Animations for two rows */
-    @keyframes scroll-row1 {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(-100vw);
-        }
-    }
-    
-    @keyframes scroll-row2 {
-        0% {
-            transform: translateX(-100vw);
-        }
-        100% {
-            transform: translateX(0);
-        }
-    }
-    
-    /* Smaller fade effects for mobile */
+    /* Further reduce fade effect for mobile phones */
     .fade-left, .fade-right {
-        width: 50px !important;
-        height: 480px !important;
+        width: 60px;
     }
     
     .fade-left {
-        background: linear-gradient(to right, 
-            rgba(17, 17, 17, 1) 0%, 
-            rgba(17, 17, 17, 0.7) 80%, 
-            rgba(17, 17, 17, 0) 100%) !important;
+        background: linear-gradient(to right, rgba(17, 17, 17, 0.6) 0%, rgba(17, 17, 17, 0.2) 50%, rgba(17, 17, 17, 0) 100%);
     }
     
     .fade-right {
-        background: linear-gradient(to left, 
-            rgba(17, 17, 17, 1) 0%, 
-            rgba(17, 17, 17, 0.7) 80%, 
-            rgba(17, 17, 17, 0) 100%) !important;
+        background: linear-gradient(to left, rgba(17, 17, 17, 0.6) 0%, rgba(17, 17, 17, 0.2) 50%, rgba(17, 17, 17, 0) 100%);
+    }
+    
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-250px * 9));
+        }
     }
 }
 /* Add this to your existing CSS file */
@@ -964,7 +906,7 @@ footer span a:hover{
 /* Responsive adjustment */
 @media (max-width: 500px) {
     .navbar .logo img.nav-logo {
-        height: 25px;
+        height: 40px;
     }
 }
 .owl-dots{
